@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StressClient.DemoServer", "samples\StressClient.DemoServer\StressClient.DemoServer.csproj", "{5A5D6D39-CBB2-48E9-A365-B912CD69FE5F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{30C1CE19-A8F3-4D74-A5B8-B2D0531A2837}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{821A6D05-B921-4D54-A9D5-4A472B6BB125}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StressClient.Core", "src\StressClient.Core\StressClient.Core.csproj", "{03D64A22-89DE-4D67-B6AA-DA29B6A26907}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StressClient.App", "samples\StressClient.App\StressClient.App.csproj", "{6CB27F5A-A28D-42CF-9B70-E34712296194}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A5D6D39-CBB2-48E9-A365-B912CD69FE5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A5D6D39-CBB2-48E9-A365-B912CD69FE5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A5D6D39-CBB2-48E9-A365-B912CD69FE5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A5D6D39-CBB2-48E9-A365-B912CD69FE5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03D64A22-89DE-4D67-B6AA-DA29B6A26907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03D64A22-89DE-4D67-B6AA-DA29B6A26907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03D64A22-89DE-4D67-B6AA-DA29B6A26907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03D64A22-89DE-4D67-B6AA-DA29B6A26907}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CB27F5A-A28D-42CF-9B70-E34712296194}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CB27F5A-A28D-42CF-9B70-E34712296194}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CB27F5A-A28D-42CF-9B70-E34712296194}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CB27F5A-A28D-42CF-9B70-E34712296194}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A5D6D39-CBB2-48E9-A365-B912CD69FE5F} = {30C1CE19-A8F3-4D74-A5B8-B2D0531A2837}
+		{6CB27F5A-A28D-42CF-9B70-E34712296194} = {30C1CE19-A8F3-4D74-A5B8-B2D0531A2837}
+	EndGlobalSection
+EndGlobal
