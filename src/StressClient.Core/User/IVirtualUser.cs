@@ -7,6 +7,7 @@
         string Transport { get; }
 
         string ConnectionId { get; }
+        long? ConnectDuration { get; }
         long ReceivedMessages { get; }
         long ReceivedBytes { get; }
 

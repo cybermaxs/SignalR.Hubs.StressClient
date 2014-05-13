@@ -22,8 +22,11 @@ namespace StressClient.Core.User
 
             this.Connection.Received+=Connection_Received;
 
+            var watcher = Stopwatch.StartNew();
             //specifiy transport here
             await this.Connection.Start(this.CreateTranport(this.Transport));
+            watcher.Stop();
+            this.ConnectDuration = watcher.ElapsedMilliseconds;
 
             Trace.TraceInformation("New Connection Created :{0}", this.Connection.ConnectionId);
 
@@ -101,12 +104,14 @@ namespace StressClient.Core.User
 
         private long receivedMessages = 0;
         private long receivedBytes = 0;
+
         protected void NotifyNewMessage(IList<JToken> obj)
         {
             Interlocked.Increment(ref receivedMessages);
         }
 
         public string ConnectionId { get { return this.Connection.ConnectionId ; } }
+        public long? ConnectDuration { get; private set; }
         public long ReceivedMessages { get { return receivedMessages; } }
         public long ReceivedBytes { get { return receivedBytes; } }
         public abstract string HubUrl {get;}
