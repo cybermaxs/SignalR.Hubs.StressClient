@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CommandLine">
+      <HintPath>..\..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Client, Version=2.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Client.2.0.3\lib\net45\Microsoft.AspNet.SignalR.Client.dll</HintPath>
@@ -53,6 +56,7 @@
   <ItemGroup>
     <Compile Include="GroupUser.cs" />
     <Compile Include="EchoUser.cs" />
+    <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

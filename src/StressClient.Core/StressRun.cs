@@ -16,6 +16,7 @@ namespace StressClient.Core
         private EventWaitHandle CancelWaitHandle;
 
         public bool IsRunning { get { return this.Timer != null && this.Timer.IsRunning; } }
+        public TimeSpan Elapsed { get { return this.IsRunning ? this.Timer.Elapsed : TimeSpan.Zero; } }
 
         private StressRun()
         {
@@ -24,24 +25,19 @@ namespace StressClient.Core
 
         public void Run()
         {
-            Timer = Stopwatch.StartNew();
-            bool signaled = false;
-
-            do
+            if (!IsRunning)
             {
-                signaled = this.CancelWaitHandle.WaitOne(TimeSpan.FromSeconds(5));
-                // ToDo: Something else if desired.
-            } while (!signaled && this.Timer.ElapsedMilliseconds < this.DurationInMs);
+                Timer = Stopwatch.StartNew();
+                bool signaled = false;
 
-            this.Stop();
+                do
+                {
+                    signaled = this.CancelWaitHandle.WaitOne(TimeSpan.FromSeconds(5));
+                    // ToDo: Something else if desired.
+                } while (!signaled && this.Timer.ElapsedMilliseconds < this.DurationInMs);
 
-        }
-
-        public void Evolution(object state)
-        {
-            //kill & remove a percent of user
-
-            //create new ones
+                this.Stop();
+            }
         }
 
         public void Cancel()
@@ -59,7 +55,7 @@ namespace StressClient.Core
         }
 
 
-        public static StressRun Setup<T>(int numberOfUsers, int durationInMs, double percentageNewUsers = double.NaN) where T : IVirtualUser, new()
+        public static StressRun Setup<T>(int numberOfUsers, int durationInMs, bool constantLoad) where T : IVirtualUser, new()
         {
             ServicePointManager.DefaultConnectionLimit = int.MaxValue;
 
@@ -71,8 +67,11 @@ namespace StressClient.Core
             Enumerable.Range(1, numberOfUsers).ToList().ForEach(i => run.VUsers.Add(new T()));
 
             //step 1 : setup all virtual users
-            run.VUsers.ForEach(c => { c.Setup(); });
+            run.VUsers.ForEach(async c => { 
+                await c.Setup(run); 
+            });
 
+            //dynmaic user load not implemented yet
             //if (percentageNewUsers != double.NaN)
             //{
             //    run.TimerNewUsers = new Timer(state =>

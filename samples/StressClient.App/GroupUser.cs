@@ -4,13 +4,12 @@ using StressClient.Core.User;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace StressClient.App
 {
     public class GroupUser : BaseVirtualUser
     {
-        public long ReceivedMessages;
-
         public override void SetupHandlers(IHubProxy proxy)
         {
             proxy.Subscribe("send").Received += GroupUser_Received;
@@ -22,9 +21,9 @@ namespace StressClient.App
             //Trace.WriteLine(string.Format("message received {0}", obj));
         }
 
-        public override void Initialize(IHubProxy proxy)
+        public override Task Initialize(IHubProxy proxy)
         {
-            proxy.Invoke("join", "testgroup");
+            return proxy.Invoke("join", "testgroup");
         }
 
         public override string HubUrl { get { return "http://localhost:34196/"; } }
@@ -36,9 +35,9 @@ namespace StressClient.App
             get { return string.Empty; }
         }
 
-        public override void Ping(IHubProxy proxy)
+        public override Task Ping(IHubProxy proxy)
         {
-            //Nothing
+            return Task.FromResult(true);
         }
     }
 }
