@@ -17,8 +17,7 @@ namespace StressClient.App
 
         void EchoUser_Received(IList<JToken> obj)
         {
-            //this.NotifyNewMessage(obj);
-            //Trace.WriteLine("message received");
+            //do somehting here
         }
 
         public override Task Initialize(IHubProxy proxy)

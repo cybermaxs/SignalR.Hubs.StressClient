@@ -17,8 +17,7 @@ namespace StressClient.App
 
         void GroupUser_Received(IList<JToken> obj)
         {
-            //this.NotifyNewMessage(obj);
-            //Trace.WriteLine(string.Format("message received {0}", obj));
+            //do somehting here
         }
 
         public override Task Initialize(IHubProxy proxy)

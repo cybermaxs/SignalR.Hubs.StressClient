@@ -1,10 +1,8 @@
 ﻿using Microsoft.AspNet.SignalR.Client;
 using Microsoft.AspNet.SignalR.Client.Http;
 using Microsoft.AspNet.SignalR.Client.Transports;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
@@ -111,11 +109,6 @@ namespace StressClient.Core.User
 
         private long receivedMessages = 0;
         private long receivedBytes = 0;
-
-        protected void NotifyNewMessage(IList<JToken> obj)
-        {
-            Interlocked.Increment(ref receivedMessages);
-        }
 
         public string ConnectionId { get { return this.Connection.ConnectionId; } }
         public long? ConnectDuration { get; private set; }
