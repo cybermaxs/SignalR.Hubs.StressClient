@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace StressClient.Core
 {
@@ -67,9 +68,13 @@ namespace StressClient.Core
             Enumerable.Range(1, numberOfUsers).ToList().ForEach(i => run.VUsers.Add(new T()));
 
             //step 1 : setup all virtual users
-            run.VUsers.ForEach(async c => { 
-                await c.Setup(run); 
-            });
+            Parallel.ForEach(run.VUsers, new ParallelOptions(){ MaxDegreeOfParallelism=25}, v =>
+                {
+                    v.Setup(run); 
+                });
+            //run.VUsers.ForEach(async c => { 
+            //    await c.Setup(run); 
+            //});
 
             //dynmaic user load not implemented yet
             //if (percentageNewUsers != double.NaN)
